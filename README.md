@@ -58,7 +58,7 @@ pair:
 ``` bash
 $ ssh-keygen -t rsa -C "your@email.com"
 Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/yourusername/.ssh/id_rsa): test_rsa
+Enter file in which to save the key (/Users/yourusername/.ssh/id_rsa):
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 Your identification has been saved in test_rsa.
