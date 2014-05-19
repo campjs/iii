@@ -5,4 +5,4 @@ if [ "$#" -ne 2 ]; then
 fi
 shift
 echo "Removing '$1' from dokku"
-sshcommand acl-remove dokku "$1"
+sudo sshcommand acl-remove dokku "$1"

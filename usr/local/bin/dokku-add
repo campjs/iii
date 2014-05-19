@@ -5,4 +5,4 @@ if [ "$#" -ne 2 ]; then
 fi
 shift
 echo "Adding '$1' to dokku"
-cat - | sshcommand acl-add dokku "$1"
+cat - | sudo sshcommand acl-add dokku "$1"
