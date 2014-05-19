@@ -10,7 +10,7 @@ the password `campjs` when prompted.
 ``` bash
 $ cat ~/.ssh/id_rsa.pub | ssh add@iii.campjs.com your@email.com
 add@iii.campjs.com's password:
-Adding 'your@email.com to dokku
+Adding 'your@email.com' to dokku
 b3:ac:58:b6:8d:d3:27:32:59:30:3e:ab:5c:0c:55:5b
 ```
 
