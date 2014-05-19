@@ -1,0 +1,4 @@
+#!/bin/sh
+shift
+echo "Removing '$1' from dokku"
+sshcommand acl-remove dokku "$1"

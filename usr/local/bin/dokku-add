@@ -1,0 +1,4 @@
+#!/bin/sh
+shift
+echo "Adding '$1' to dokku"
+cat - | sshcommand acl-add dokku "$1"
