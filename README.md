@@ -29,13 +29,13 @@ Compressing objects: 100% (254/254), done.
 Writing objects: 100% (296/296), 193.59 KiB, done.
 Total 296 (delta 25), reused 276 (delta 13)
 -----> Building node-js-app ...
-       Node.js app detected
-       -----> Resolving engine versions
+Node.js app detected
+-----> Resolving engine versions
 
-       ... blah blah blah ...
+... blah blah blah ...
 
-       -----> Application deployed:
-              http://node-js-sample.iii.campjs.com
+-----> Application deployed:
+  http://node-js-sample.iii.campjs.com
 ```
 
 ## How to remove your keys from the dokku server
@@ -83,14 +83,17 @@ need to be installed:
   preferably on the dokku server, and also running SSL.
 * [s3pository.heroku.com](http://s3pository.heroku.com) a mirror of the node.js
   linux binaries needs to running as well (preferably on the dokku server).
+* [npm](https://npmjs.org) - A local mirror of npm needs to exist and be
+  listening on `npm.campjs.com`. The `.npmrc` of the custom nodejs buildpack
+  has been modified to point to this address.
 * [dnsmasq](https://github.com/eugeneware/dnsmasq) to fool the servers into
   thinking that they are connected, we need to reroute some DNS entries to our
   local servers. There also needs to be an entry in `/etc/default/docker` to
   change the DNS server passed to docker containers to be the local `dnsmasq`
-  server. (NB: This should probably be a `docker-args` hook)
-* [npm](https://npmjs.org) - A local mirror of npm needs to exist and be
-  listening on `npm.campjs.com`. The `.npmrc` of the custom nodejs buildpack
-  has been modified to point to this address.
+  server. (NB: This should probably be a `docker-args` hook). To be run like:
+``` bash
+docker run -name dnsmasq -v=/etc/dnsmasq.hosts:/dnsmasq.hosts -p='53:5353/udp' -d eugeneware/dnsmasq
+```
 
 ## TODO
 
