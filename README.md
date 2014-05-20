@@ -67,6 +67,31 @@ The key fingerprint is:
 3b:1a:42:c2:54:b4:db:9c:10:a0:56:0d:5d:ec:73:32 your@email.com
 ```
 
+## Requirements
+
+To get this server to work without internet connectivity the following repos
+need to be installed:
+
+* [eugeneware/buildstep](https://github.com/eugeneware/buildstep) - custom
+  buildpack builder which will use a custom
+  [node.js heroku buildpack](https://github.com/eugeneware/heroku-buildpack-nodejs)
+  which bypasses the dependenciesd on [semver.io](https://github.com/heroku/semver.io)
+  and [s3pository.heroku.com](http://s3pository.heroku.com) for node buildpacks.
+  This needs to be built as a docker image and installed on the dokku server as
+  `progrium/buildstep`.
+* [semver.io](https://github.com/heroku/semver.io) - needs to be running,
+  preferably on the dokku server, and also running SSL.
+* [s3pository.heroku.com](http://s3pository.heroku.com) a mirror of the node.js
+  linux binaries needs to running as well (preferably on the dokku server).
+* [dnsmasq](https://github.com/eugeneware/dnsmasq) to fool the servers into
+  thinking that they are connected, we need to reroute some DNS entries to our
+  local servers. There also needs to be an entry in `/etc/default/docker` to
+  change the DNS server passed to docker containers to be the local `dnsmasq`
+  server. (NB: This should probably be a `docker-args` hook)
+* [npm](https://npmjs.org) - A local mirror of npm needs to exist and be
+  listening on `npm.campjs.com`. The `.npmrc` of the custom nodejs buildpack
+  has been modified to point to this address.
+
 ## TODO
 
 * Make dokku resolve against local npm server
